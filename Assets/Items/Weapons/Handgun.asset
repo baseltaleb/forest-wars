@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00995502fe343c8449ae97fa6395f274, type: 3}
+  m_Name: Handgun
+  m_EditorClassIdentifier: 
+  itemName: Handgun
+  itemVisual: {fileID: 1504903662082304, guid: 5c3dfa75091cf984d8a30c947d289a02, type: 2}
+  itemUIVisual: {fileID: 1839148473920844, guid: 7fa2fe6cb405404449aa74aaba1a514b,
+    type: 2}
+  projectilePrefab: {fileID: 1000662104090356, guid: 4e9d51c081aa47a46b57c8b1eb5a9496,
+    type: 2}
+  muzzleEffectPrefab: {fileID: 1651729300792606, guid: ef3b4bf8198f7d44fa5235bad18b0b9a,
+    type: 2}
+  damage: 3
+  range: 5
+  fireRate: 1.5
+  projectileSpeed: 15
+  recoilAmount: 0.1
+  recoiDuration: 0.1
+  shootSound: {fileID: 8300000, guid: 3e46dfc8e78c0ef4885e8c8476979306, type: 3}
+  muzzleExit: {fileID: 0}
+  muzzleEffect: {fileID: 0}

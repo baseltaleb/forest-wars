@@ -1,0 +1,78 @@
+﻿using System.Collections;
+using UnityEngine;
+
+public class ItemHolder : MonoBehaviour {
+    public bool isPickable;
+    private Transform visuals;
+    private Item m_item;
+    private Weapon m_weapon;
+    private Consumable m_consumable;
+    private bool m_hasWeapon;
+    private float m_nextFireTime = 0f;
+
+    public void SetItem(Item item)
+    {
+        m_item = item;
+        visuals = m_item.itemVisual.transform;
+        if (item is Weapon)
+        {
+            m_item = new Weapon();
+            m_item = item;
+            m_hasWeapon = true;
+        }
+    }
+
+    public Item GetItem()
+    {
+        return m_item;
+    }
+
+    public void OwnItem(Item item)
+    {
+        SetItem(item);
+        item.ChangeOwner(this);
+    }
+
+    public void TriggetItem()
+    {
+        if (Time.time >= m_nextFireTime)
+        {
+            if (m_item)
+            {
+                Projectile p = Instantiate(projectilePrefab, muzzleExit.position, muzzleExit.rotation)
+                    .GetComponent<Projectile>();
+                p.damage = damage;
+                p.speed = projectileSpeed;
+                p.range = range;
+                if (muzzleEffect)
+                    muzzleEffect.Play();
+                m_itemHolder.Recoil(recoilAmount, recoiDuration);
+            }
+            m_nextFireTime = Time.time + 1f / fireRate;
+        }
+
+    }
+
+    public void Recoil(float amount, float duration)
+    {
+        StartCoroutine(IRecoil(amount, duration));
+    }
+
+    private IEnumerator IRecoil(float amount, float duration)
+    {
+
+        //transform.position -= transform.right * amount;
+        //yield return new WaitForSeconds(duration);
+        //transform.position += transform.right * amount;
+        if (visuals)
+        {
+            visuals.position -= visuals.right * amount;
+            yield return new WaitForSeconds(duration);
+            visuals.position += visuals.right * amount;
+        }
+        else
+        {
+            visuals = m_item.itemVisual.transform;
+        }
+    }
+}
